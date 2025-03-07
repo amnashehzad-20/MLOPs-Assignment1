@@ -36,7 +36,8 @@ def test_complete_task(client):
 def test_delete_task(client):
     """Test the delete_task route."""
     # Create a task first
-    client.post('/', data={'title': 'Task to Delete'})
+    response = client.post('/', data={'title': 'Task to Delete'})
+    assert len(tasks) == 1  # Verify task was created
     task_id = tasks[0]['id']
     response = client.get(f'/delete/{task_id}')
     assert response.status_code == 302  # Redirect status
@@ -51,7 +52,11 @@ def test_empty_task_submission(client):
 
 def test_multiple_tasks(client):
     """Test handling multiple tasks."""
+    # Clear tasks first to ensure clean state
+    tasks.clear()
+    
     client.post('/', data={'title': 'Task 1'})
+    assert len(tasks) == 1
     client.post('/', data={'title': 'Task 2'})
     assert len(tasks) == 2
     assert tasks[0]['title'] == 'Task 1'
@@ -59,7 +64,11 @@ def test_multiple_tasks(client):
 
 def test_toggle_task_completion(client):
     """Test toggling task completion status."""
+    # Clear tasks and add new task
+    tasks.clear()
+    
     client.post('/', data={'title': 'Toggle Task'})
+    assert len(tasks) == 1
     task_id = tasks[0]['id']
     # First completion
     client.get(f'/complete/{task_id}')
