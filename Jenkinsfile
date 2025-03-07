@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "amnashehzad25678/MLOPs-app"
-        DOCKER_CREDENTIALS_ID = "docker-"  
+        DOCKER_CREDENTIALS_ID = "docker-amna"
         ADMIN_EMAIL = "shehzad.amna270@gmail.com"
     }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    withDockerRegistry([credentialsId: DOCKER-AMNA, url: '']) {
+                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS_ID, url: '']) {
                         sh "docker push ${DOCKER_IMAGE}:latest"
                     }
                 }
