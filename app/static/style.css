@@ -28,6 +28,12 @@ body {
     color: #ff4c4c;
 }
 
+#timer-label {
+    color: #ff4c4c;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
 /* 📝 TO-DO LIST */
 form {
     margin-bottom: 20px;
