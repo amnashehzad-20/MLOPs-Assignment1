@@ -1,0 +1,10 @@
+venv
+task.db
+index.html
+style.css
+datab
+instance/tasks.db
+app/__pycache__/database.cpython-312.pyc
+app/static/script.js
+app/database.py
+app/app.py
