@@ -4,31 +4,27 @@ app = Flask(__name__)
 
 tasks = []  # Store tasks in memory
 
-# ======================== ADD TASK ==========================
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         title = request.form.get("title")
         if title:
-            tasks.append({"id": len(tasks) + 1, "title": title, "completed": False})
+            task_id = len(tasks) + 1
+            tasks.append({"id": task_id, "title": title, "completed": False})
     return render_template("index.html", tasks=tasks)
 
-# ========================  COMPLETE TASK ==========================
 @app.route("/complete/<int:task_id>")
 def complete_task(task_id):
-    for task in tasks:
-        if task["id"] == task_id:
-            task["completed"] = not task["completed"]  # Toggle completion
-            break
+    task = next((task for task in tasks if task["id"] == task_id), None)
+    if task:
+        task["completed"] = not task["completed"]
     return redirect(url_for("index"))
 
-# ======================== DELETE TASK ==========================
 @app.route("/delete/<int:task_id>")
 def delete_task(task_id):
     global tasks
-    tasks = [task for task in tasks if task["id"] != task_id]  # Remove task
+    tasks = [task for task in tasks if task["id"] != task_id]
     return redirect(url_for("index"))
 
-# ========================RUN FLASK APP ==========================
 if __name__ == "__main__":
     app.run(debug=True)
