@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                    bat "docker build -t ${DOCKER_IMAGE}:latest ."
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: DOCKER_CREDENTIALS_ID, url: '']) {
-                        sh "docker push ${DOCKER_IMAGE}:latest"
+                        bat "docker pubat ${DOCKER_IMAGE}:latest"
                     }
                 }
             }
