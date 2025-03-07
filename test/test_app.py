@@ -56,8 +56,8 @@ def test_toggle_task_completion(client):
     client.post('/', data={'title': 'Toggle Task'})
     task_id = tasks[0]['id']
     # First completion
-    response = client.get(f'/complete/{task_id}')
+    client.get(f'/complete/{task_id}')
     assert tasks[0]['completed'] is True
     # Second completion (toggle back)
-    response = client.get(f'/complete/{task_id}')
+    client.get(f'/complete/{task_id}')
     assert tasks[0]['completed'] is False
