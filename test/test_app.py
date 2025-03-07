@@ -54,7 +54,6 @@ def test_multiple_tasks(client):
     """Test handling multiple tasks."""
     # Clear tasks first to ensure clean state
     tasks.clear()
-    
     client.post('/', data={'title': 'Task 1'})
     assert len(tasks) == 1
     client.post('/', data={'title': 'Task 2'})
@@ -66,7 +65,6 @@ def test_toggle_task_completion(client):
     """Test toggling task completion status."""
     # Clear tasks and add new task
     tasks.clear()
-    
     client.post('/', data={'title': 'Toggle Task'})
     assert len(tasks) == 1
     task_id = tasks[0]['id']
