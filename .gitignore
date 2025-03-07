@@ -1,0 +1,11 @@
+venv
+task.db
+instance/tasks.db
+app/__pycache__/database.cpython-312.pyc
+
+app/__pycache__/app.cpython-312.pyc
+.gitignore
+test/__pycache__/test.cpython-312-pytest-8.3.3.pyc
+app/__pycache__/__init__.cpython-312.pyc
+test/__pycache__/test.cpython-312-pytest-8.3.5.pyc
+

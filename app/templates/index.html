@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pomodoro To-Do List</h1>
+
+        <!--  🕒  POMODORO TIMER  -->
+        <div class="pomodoro">
+            <h2 id="timer-label">Work Time</h2>
+            <div id="timer">25:00</div>
+            <button class="start-btn" onclick="startPomodoro()">Start</button>
+            <button class="reset-btn" onclick="resetTimer()">Reset</button>
+        </div>
+
+        <!--  ✅ ADD TASK FORM  -->
+        <form action="/" method="POST">
+            <input type="text" name="title" placeholder="Add a new task..." required>
+            <button class="start-btn" type="submit">Add Task</button>
+        </form>
+
+        <!-- 📌 TASK LIST -->
+        <ul>
+            {% for task in tasks %}
+            <li class="{% if task.completed %}completed{% endif %}">
+                {{ task.title }}
+                <div class="task-buttons">
+                    <a href="{{ url_for('complete_task', task_id=task.id) }}" class="done">✔</a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete">❌</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
