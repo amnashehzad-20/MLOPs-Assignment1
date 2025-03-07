@@ -7,6 +7,12 @@ def client():
     with app.test_client() as client:
         yield client
 
+@pytest.fixture(autouse=True)
+def clear_tasks():
+    tasks.clear()  # Clear tasks before each test
+    yield
+    tasks.clear()  # Clear tasks after each test
+
 def test_index_get(client):
     """Test the index route with GET method."""
     response = client.get('/')
