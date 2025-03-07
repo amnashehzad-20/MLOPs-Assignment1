@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "amnashehzad25678/mlops-app"
-        DOCKER_CREDENTIALS_ID = "docker-amna"
+        DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
         ADMIN_EMAIL = "shehzad.amna270@gmail.com"
     }
 
