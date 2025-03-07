@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
-from database import db, Task  # Ensure database.py defines db & Task properly
+from flask import Flask, render_template, request  # Removed unused redirect, url_for
+from database import db, Task
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
