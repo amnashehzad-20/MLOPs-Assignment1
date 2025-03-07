@@ -22,13 +22,6 @@ def complete_task(task_id):
             break
     return redirect(url_for("index"))
 
-# ======================== DELETE TASK ==========================
-@app.route("/delete/<int:task_id>")
-def delete_task(task_id):
-    global tasks
-    tasks = [task for task in tasks if task["id"] != task_id]  # Remove task
-    return redirect(url_for("index"))
-
 # ========================RUN FLASK APP ==========================
 if __name__ == "__main__":
     app.run(debug=True)
