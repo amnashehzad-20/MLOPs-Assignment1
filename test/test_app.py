@@ -39,4 +39,3 @@ def test_empty_task_submission(client):
     response = client.post('/', data={'title': ''})
     assert response.status_code == 200
     assert len(tasks) == initial_task_count  # No task should be added
-
