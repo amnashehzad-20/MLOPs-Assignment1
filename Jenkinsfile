@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "amnashehzad25678/MLOPs-app"
-        DOCKER_CREDENTIALS_ID = "docker-"  
+        DOCKER_IMAGE = "amnashehzad25678/mlops-app"
+        DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
         ADMIN_EMAIL = "shehzad.amna270@gmail.com"
     }
 
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                    bat "docker build -t ${DOCKER_IMAGE}:latest ."
                 }
             }
         }
@@ -25,8 +25,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    withDockerRegistry([credentialsId: DOCKER-AMNA, url: '']) {
-                        sh "docker push ${DOCKER_IMAGE}:latest"
+                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS_ID, url: '']) {
+                        bat "docker push ${DOCKER_IMAGE}:latest"
                     }
                 }
             }
